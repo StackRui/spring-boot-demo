@@ -12,7 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/send")
+@RequestMapping("/rocketmq")
 public class ProducerController {
   private final RocketMQTemplate rocketMQTemplate;
 
