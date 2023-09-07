@@ -60,8 +60,6 @@ public class ProducerController {
     Map<String, Object> headers = new HashMap<>();
     headers.put(MessageConst.PROPERTY_KEYS, orderId);
     headers.put("items", RandomUtils.nextInt(25, 50));
-    headers.put(MessageConst.PROPERTY_MAX_RECONSUME_TIMES, 1);
-    headers.put("maxReconsumeTimes", 1);
     return headers;
   }
 }
