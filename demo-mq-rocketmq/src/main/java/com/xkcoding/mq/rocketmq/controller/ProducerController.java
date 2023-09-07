@@ -48,4 +48,15 @@ public class ProducerController {
       }
     });
   }
+
+  @PostMapping("/sendOneWay")
+  @ResponseBody
+  public void sendOneWay(@RequestBody String str, @RequestParam String orderId) {
+    Map<String, Object> headers = new HashMap<>();
+    headers.put("KEYS", orderId);
+    headers.put("items", RandomUtils.nextInt(25, 50));
+
+    // 单向发送无感知
+    rocketMQTemplate.sendOneWay("order:" + orderId, new GenericMessage<>(str, headers));
+  }
 }
