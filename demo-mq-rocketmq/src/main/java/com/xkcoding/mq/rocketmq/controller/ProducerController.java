@@ -56,6 +56,15 @@ public class ProducerController {
     rocketMQTemplate.sendOneWay("order:" + orderId, new GenericMessage<>(str, headers));
   }
 
+  @PostMapping("/sendDelay")
+  @ResponseBody
+  public void sendDelay(@RequestBody String str, @RequestParam String orderId) {
+    Map<String, Object> headers = getHeaders(orderId);
+
+    // 单向发送无感知
+    rocketMQTemplate.syncSend("order:" + orderId, new GenericMessage<>(str, headers),3000,3);
+  }
+
   private static Map<String, Object> getHeaders(String orderId) {
     Map<String, Object> headers = new HashMap<>();
     headers.put(MessageConst.PROPERTY_KEYS, orderId);
