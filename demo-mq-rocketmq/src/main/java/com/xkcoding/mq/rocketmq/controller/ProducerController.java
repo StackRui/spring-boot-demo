@@ -61,7 +61,6 @@ public class ProducerController {
   public void sendDelay(@RequestBody String str, @RequestParam String orderId) {
     Map<String, Object> headers = getHeaders(orderId);
 
-    // 单向发送无感知
     rocketMQTemplate.syncSend("order:" + orderId, new GenericMessage<>(str, headers),3000,3);
   }
 
