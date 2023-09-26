@@ -11,6 +11,8 @@ spring:
       buffer-memory: 33554432
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      properties:
+        interceptor.classes: com.xkcoding.mq.kafka.producer.SuccessRatProducerInterceptor
     consumer:
       group-id: spring-boot-demo
       # 手动提交
